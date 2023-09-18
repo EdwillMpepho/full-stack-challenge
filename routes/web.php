@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +21,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth','user-role:admin'])->group(function () {
+	Route::get('/home', 'HomeController@index')->name('home');
+});
+
+/*
 
 //Routes for Posts
 Route::get('posts', 'PostsController@index');
@@ -38,3 +46,4 @@ Route::get('my-posts', 'AuthorsController@posts')->name('my-posts');
 //Routes for Authors
 Route::get('authors', 'AuthorsController@index');
 Route::get('authors/{author}', 'AuthorsController@show');
+*/
