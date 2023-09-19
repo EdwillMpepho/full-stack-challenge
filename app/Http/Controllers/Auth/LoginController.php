@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -20,14 +20,15 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    
+     use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -45,22 +46,24 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validate($request,[
-           'email' => 'required|email',
-           'password' => 'required'
-        ]);
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-        $credentials = [
-          'email' => $request->email,
-          'password' => $request->password
-        ];
-
-        if(Auth::attempt($credentials)){
-            if(Auth::user()->role == 'admin'){
-              return redirect('/home')->with('success_message','you are successfully logged in');
-            }
+        if(Auth::attempt(['email' => $email, 'password' => $password])){
+          return view('dashboard');
         }else{
            return redirect()->back()->with('error_message','invalid credentials');
         }
+        
+    }
+
+    /**
+     * Logs the user out
+     * 
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login')->with('success_message','you have successfully logged out');
     }
 }

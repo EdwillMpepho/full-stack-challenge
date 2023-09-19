@@ -27,7 +27,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    /*
+    
     public function posts() {
         return $this->hasMany(Post::class);
     }
@@ -36,10 +36,7 @@ class User extends Authenticatable
      * The user role that must be returned in a stirng
      * 
      */
-    public function role(): Attribute
-    {
-        return new Attribute(
-            fn($value) => ['admin','supervisor','executive'][$value]
-        );
-    }
+    protected $role = [ 'admin','supervisor','executive' ];
+   
+    
 }
