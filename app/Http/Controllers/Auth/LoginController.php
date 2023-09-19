@@ -50,7 +50,7 @@ class LoginController extends Controller
         $password = $request->input('password');
 
         if(Auth::attempt(['email' => $email, 'password' => $password])){
-          return view('dashboard');
+           return view('dashboard');
         }else{
            return redirect()->back()->with('error_message','invalid credentials');
         }

@@ -1,8 +1,9 @@
 
 @if (Route::has('login'))
     <div class="top-right links">
-    <a href="{{ url('/home') }}">Home</a>
+    <a href="/">Home</a>
     @auth
+      <a href="{{ route('register') }}">Register</a>
       <a href="#">
         {{ Auth::user()->name }} <span class="caret"></span>
        </a>
@@ -16,8 +17,7 @@
         </form>
        @else
        <a href="{{ route('login') }}">Login</a>
-        <a href="{{ route('register') }}">Register</a>
-    @endauth
+     @endauth
     
 @endif
 </div>

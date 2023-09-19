@@ -8,6 +8,8 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
+                    <!-- only open if the user is admin  -->
+                    @if(Auth::user()->role == 0)
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
@@ -69,6 +71,10 @@
                             </div>
                         </div>
                     </form>
+                    @else
+                        <div class="panel-heading">Unuthorized to perform this operation.The 
+                        admin is the only person authorized to perform this operation</div> 
+                    @endif
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class ReferralController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -63,6 +63,7 @@ class ReferralController extends Controller
      */
     public function store(Request $request)
     {
+        
         //
         $this->validate(request(), [
                 'reference_no' => 'required',
@@ -72,14 +73,14 @@ class ReferralController extends Controller
                 'provider_name' => 'required',
                 'phone' => 'required'
             ]);
-        //
+        /*
         Referral::create([
                 "reference_no" => request("reference_no"),
                 "organisation" => request("organisation"),
                 "province" => request("province"),
                 "district" => request("district"),
                 "city" => request("city"),
-                "street_addr" => request("street_addr"),
+                "street_address" => request("street_addr"),
                 "country" => request("country"),
                 "email" => request("email"),
                 "website" => request("website"),
@@ -90,6 +91,24 @@ class ReferralController extends Controller
                 "provider_name" => request("provider_name"),
                 "phone" => request("phone")
             ]);
+            */
+            $referral = new Referral;
+            $referral->reference_no = request("reference_no");
+            $referral->organisation = request("organisation");
+            $referral->province = request("province");
+            $referral->district = request("district");
+            $referral->city = request("city");
+            $referral->street_address = request("street_addr");
+            $referral->country = request("country");
+            $referral->email = request("email");
+            $referral->website =request("website");
+            $referral->zipcode = request("zipcode");
+            $referral->facility_type = request("facility_type");
+            $referral->gps_location = request("gps_location");
+            $referral->position = request("position");
+            $referral->provider_name = request("provider_name");
+            $referral->phone = request("phone");
+            $referral->save();
 
         return redirect('referrals');
     }

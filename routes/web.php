@@ -21,8 +21,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth','user-role:admin'])->group(function () {
+Route::middleware(['auth:web'])->group(function () {
 	Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
+	//Routes for Referrals
+    Route::get('referrals/upload', 'ReferralController@upload');
+    Route::post('referrals/upload', 'ReferralController@processUpload');
+    Route::get('referrals/create', 'ReferralController@create')->name('add-referral');
+    Route::get('referrals/{country?}/{city?}', 'ReferralController@index');
+    Route::post('referrals', 'ReferralController@store');
 });
 
 /*
@@ -32,12 +38,7 @@ Route::post('posts', 'PostsController@store');
 Route::get('posts/create', 'PostsController@create');
 Route::get('posts/{post}', 'PostsController@show');
 
-//Routes for Referrals
-Route::get('referrals/upload', 'ReferralController@upload');
-Route::post('referrals/upload', 'ReferralController@processUpload');
-Route::get('referrals/create', 'ReferralController@create')->name('add-referral');
-Route::get('referrals/{country?}/{city?}', 'ReferralController@index');
-Route::post('referrals', 'ReferralController@store');
+
 
 //Logged in Users
 Route::get('my-posts', 'AuthorsController@posts')->name('my-posts');
