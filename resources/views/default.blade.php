@@ -68,9 +68,9 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ url('/') }}">Home</a>
                     @auth
-                       <a href="{{ url('/home') }}">Home</a>
-                       <a href="#">
+                        <a href="#">
                          {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <a href="{{ route('logout') }}"
@@ -82,9 +82,9 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
+                    <a href="{{ route('register') }}">Register</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif

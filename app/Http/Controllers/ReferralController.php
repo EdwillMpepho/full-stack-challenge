@@ -6,6 +6,7 @@ use App\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ReferralController extends Controller
 {
@@ -44,14 +45,7 @@ class ReferralController extends Controller
         
         return view('referrals.index', compact('referrals', 'countries', 'cities'))->with('country_filter', $country_filter);
     }
-    /**
-     * list all referrals without filter
-     */
-    public function allreferrals()
-    {
-        $referrals = Referral::paginate(20);
-        return view('referrals.allreferrals')->with('referrals',$referrals);
-    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -211,5 +205,43 @@ class ReferralController extends Controller
             }
         }
         return redirect('referrals');
+    }
+
+    /**
+     * Search the given resource
+     * 
+     * @param $request
+     */
+    public function search(Request $request)
+    {
+       
+        $query = $request->input('search');
+        if(empty($query)){
+            return redirect()->back()->with('error_message','the query field is required');
+        }
+        $results = Referral::Where('reference_no','like','%'.$query.'%')
+                 ->orWhere('organisation','like','%'.$query.'%')
+                 ->orWhere('province','like','%'.$query.'%')
+                 ->orWhere('district','like','%'.$query.'%')
+                 ->orWhere('city','like','%'.$query.'%')
+                 ->orWhere('street_address','like','%'.$query.'%')
+                 ->orWhere('email','like','%'.$query.'%')
+                 ->orWhere('country','like','%'.$query.'%')
+                 ->orWhere('website','like','%'.$query.'%')
+                 ->orWhere('zipcode','like','%'.$query.'%')
+                 ->orWhere('gps_location','like','%'.$query.'%')
+                 ->orWhere('facility_type','like','%'.$query.'%')
+                 ->orWhere('position','like','%'.$query.'%')
+                 ->orWhere('provider_name','like','%'.$query.'%')
+                 ->orWhere('phone','like','%'.$query.'%')
+                 ->orWhere('facility_name','like','%'.$query.'%')
+                 ->orWhere('pills_available','like','%'.$query.'%')
+                 ->orWhere('code_to_use','like','%'.$query.'%')
+                 ->orWhere('type_of_service','like','%'.$query.'%')
+                 ->orWhere('note','like','%'.$query.'%')
+                 ->orWhere('womens_evaluation','like','%'.$query.'%')
+                 ->get();
+        
+        return $results;
     }
 }
