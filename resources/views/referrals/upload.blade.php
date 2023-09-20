@@ -14,6 +14,8 @@
                         </div>
                     @endif
                     @include('errors')
+                      <!-- check if user is authorized to perform operation -->
+                      @if(Auth::user()->role == 0 || Auth::user()->role ==1)
                     <div class="alert alert-info">
                         <strong>Note - </strong> Please ensure that the data is in csv file and the column sequence is as mentioned below: <br />
                         <hr />
@@ -31,6 +33,11 @@
                             <button type="submit" class="btn btn-success">Upload</button>
                         </div>
                     </form>
+                    @else
+                       <div class="panel-heading">
+                           Administrators and Supervisors are allowed to do this operation
+                       </div>
+                    @endif
                 </div>
             </div>
         </div>

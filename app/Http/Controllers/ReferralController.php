@@ -44,7 +44,14 @@ class ReferralController extends Controller
         
         return view('referrals.index', compact('referrals', 'countries', 'cities'))->with('country_filter', $country_filter);
     }
-
+    /**
+     * list all referrals without filter
+     */
+    public function allreferrals()
+    {
+        $referrals = Referral::paginate(20);
+        return view('referrals.allreferrals')->with('referrals',$referrals);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -74,8 +81,8 @@ class ReferralController extends Controller
                 'provider_name' => 'required',
                 'phone' => 'required'
             ]);
-           
-            if(Auth::check()){
+           // check if user is admin = 0 or supervisor = 1
+            if(Auth::user()->role == 0 || Auth::user()->role == 1){
               $referral = new Referral;
               $referral->reference_no = request("reference_no");
               $referral->organisation = request("organisation");

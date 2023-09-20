@@ -14,6 +14,8 @@
                         </div>
                     @endif
                     @include('errors')
+                    <!-- check if user is authorized to perform operation -->
+                    @if(Auth::user()->role == 0 || Auth::user()->role ==1)
                     <form method="POST" action="/referrals">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -95,6 +97,11 @@
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
+                    @else
+                       <div class="panel-heading">
+                           You are not authorized to add referrals
+                       </div>
+                    @endif
                 </div>
             </div>
         </div>

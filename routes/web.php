@@ -29,6 +29,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('referrals/create', 'ReferralController@create')->name('add-referral');
     Route::get('referrals/{country?}/{city?}', 'ReferralController@index');
     Route::post('referrals', 'ReferralController@store');
+    Route::get('referrals', 'ReferralController@allreferrals');
 });
 
 /*
