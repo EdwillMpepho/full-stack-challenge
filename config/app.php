@@ -104,7 +104,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY','base64:Ri+vt8vC5rQK/35RFzSFOG5Mv28mIzLZUzweb/izyik='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -178,8 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Delatbabel\Elocrypt\ElocryptServiceProvider::class
-
+        Delatbabel\Elocrypt\ElocryptServiceProvider::class,
     ],
 
     /*

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ReferralController extends Controller
 {
@@ -73,44 +74,29 @@ class ReferralController extends Controller
                 'provider_name' => 'required',
                 'phone' => 'required'
             ]);
-        /*
-        Referral::create([
-                "reference_no" => request("reference_no"),
-                "organisation" => request("organisation"),
-                "province" => request("province"),
-                "district" => request("district"),
-                "city" => request("city"),
-                "street_address" => request("street_addr"),
-                "country" => request("country"),
-                "email" => request("email"),
-                "website" => request("website"),
-                "zipcode" => request("zipcode"),
-                "facility_type" => request("facility_type"),
-                "gps_location" => request("gps_location"),
-                "position" => request("position"),
-                "provider_name" => request("provider_name"),
-                "phone" => request("phone")
-            ]);
-            */
-            $referral = new Referral;
-            $referral->reference_no = request("reference_no");
-            $referral->organisation = request("organisation");
-            $referral->province = request("province");
-            $referral->district = request("district");
-            $referral->city = request("city");
-            $referral->street_address = request("street_addr");
-            $referral->country = request("country");
-            $referral->email = request("email");
-            $referral->website =request("website");
-            $referral->zipcode = request("zipcode");
-            $referral->facility_type = request("facility_type");
-            $referral->gps_location = request("gps_location");
-            $referral->position = request("position");
-            $referral->provider_name = request("provider_name");
-            $referral->phone = request("phone");
-            $referral->save();
-
-        return redirect('referrals');
+           
+            if(Auth::check()){
+              $referral = new Referral;
+              $referral->reference_no = request("reference_no");
+              $referral->organisation = request("organisation");
+              $referral->province = request("province");
+              $referral->district = request("district");
+              $referral->city = request("city");
+              $referral->street_address = request("street_addr");
+              $referral->country = request("country");
+              $referral->email = request("email");
+              $referral->website =request("website");
+              $referral->zipcode = request("zipcode");
+              $referral->facility_type = request("facility_type");
+              $referral->gps_location = request("gps_location");
+              $referral->position = request("position");
+              $referral->provider_name = request("provider_name");
+              $referral->phone = request("phone");
+              $referral->save();
+              return redirect('referrals');
+            }else{
+                return redirect()->route('login')->with('error_message','you are not authorized');
+            }
     }
 
     /**
