@@ -8,7 +8,7 @@
                 <div class="panel-heading"><h1>Referrals</h1></div>
 
                 <div class="panel-body">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin:5px auto;height:40px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin:5px auto;height:50px;">
                         @include('partials.filterReferrals') 
                         @include('partials.postcomment') 
                         @include('partials.createReferralButton')
@@ -85,3 +85,4 @@
     </div>
 </div>
 @endsection
+

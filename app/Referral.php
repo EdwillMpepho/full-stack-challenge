@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
-//encrypted = Crypt::encryptString('Hello world.');
- 
-//$decrypted = Crypt::decryptString($encrypted);
+
 
 class Referral extends Model
 {
@@ -299,19 +297,12 @@ class Referral extends Model
        return Crypt::decryptString($this->attributes['position']);
     }    
 
-    
-
     public static function getCountries(){
     	return DB::table('referrals')->pluck('country')->unique();
     }
 
     public static function getCities($country){
     	return DB::table('referrals')->where("country", $country)->pluck('city')->unique();
-    }
-
-    public function findSearch()
-    {
-        dd($this->getPhoneAttribute());
     }
 
 }

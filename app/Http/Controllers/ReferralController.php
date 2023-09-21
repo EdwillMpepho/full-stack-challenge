@@ -216,11 +216,152 @@ class ReferralController extends Controller
     {
        
         $query = $request->input('search');
+        $filter = $request->input('filter');
+        /*
         if(empty($query)){
             return redirect()->back()->with('error_message','the query field is required');
         }
-        $referral = (new Referral)->findSearch();
-         
+        */
+        if(empty($filter)){
+            return redirect()->back()->with('error_message','you need to select the filter to search');
+        }
        
+        $referrals = Referral::all();
+        $record_array = [];
+        $count =  0;
+        
+       
+            if($filter === 'reference_no'){
+              for($i = 0;$i<sizeof($referrals);$i++){
+                 if(strtolower($referrals[$i]->reference_no) == strtolower($query)){
+                   $record_array[$i] = $referrals[$i];
+                 }
+             }
+            }else if($filter === 'country'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->country) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'organisation'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->organisation) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'province'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->province) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'district'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->district) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'city'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->city) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'street_address'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->street_address) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'zipcode'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->zipcode) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'gps_location'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->gps_location) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'facility_type'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->facility_type) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'facility_name'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->facility_name) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'provider_name'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->provider_name) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'position'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->position) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'phone'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->phone) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'email'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->email) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'website'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->website) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'pills_available'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->pills_available) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'code_to_use'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->code_to_use) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'type_of_service'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->type_of_service) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'note'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->note) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }else if($filter === 'women_evaluation'){
+                for($i = 0;$i<sizeof($referrals);$i++){
+                   if(strtolower($referrals[$i]->women_evaluation) == strtolower($query)){
+                     $record_array[$i] = $referrals[$i];
+                   }
+               }
+            }
+        // check if country is not found
+        if(count($record_array) <= 0){
+            return redirect()->back()->with('error_message','Not Found');
+        }
+        return $record_array;
     }
 }
