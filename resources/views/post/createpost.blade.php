@@ -7,13 +7,18 @@
                 <div class="panel-heading">
                    <h1>Post Comment</h1>
                 </div>
+                @include('errors')
                 <div class="panel-body">
                     <h3>{{ Auth::user()->name }} post your comment</h3>
                     @if (Auth::check())
-                        <form action="#" method="post">
+                        <form action="/posts" method="post">
                             {{ csrf_field() }}
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <div class="form-group">
-                                <textarea name="comment" id="" cols="30" rows="10" class="form-control">
+                                <input type="text" name="title" placeholder="enter post title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="body" id="" cols="30" rows="10" class="form-control">
 
                                 </textarea>
                             </div>

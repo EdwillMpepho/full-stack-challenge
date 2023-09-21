@@ -23,6 +23,7 @@
                <div class="panel-heading">View Referrals</div>  
               <div class="panel-body">
                 <a href="/referrals" class="btn btn-info">View Referrals And Post Comments</a>
+                <a href="/posts" class="btn btn-dark">View All Post</a>
               </div> 
              @endif
             </div>

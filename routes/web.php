@@ -37,15 +37,12 @@ Route::middleware(['auth:web'])->group(function () {
     Route::delete('user/{id}','UserController@destroy')->name('users.delete');
     //Routes for Posts
     Route::get('posts/create', 'PostController@create');
+    Route::get('posts', 'PostController@index');
+    Route::post('posts', 'PostController@store');
+    Route::get('posts/{id}', 'PostController@show');
 });
 
 /*
-
-Route::get('posts', 'PostsController@index');
-Route::post('posts', 'PostsController@store');
-
-Route::get('posts/{post}', 'PostsController@show');
-
 
 
 //Logged in Users
