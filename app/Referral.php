@@ -178,14 +178,14 @@ class Referral extends Model
     {
         $this->attributes['phone'] = Crypt::encryptString($value);
     } 
-    /**
+     /**
      * Decrypts the reference number for display
      * 
      */
     public function getReferenceNoAttribute()
     {
       return Crypt::decryptString($this->attributes['reference_no']);
-    }   
+    }
     /**
      * Decrypts the organisation for display
      * 
@@ -275,7 +275,7 @@ class Referral extends Model
        return Crypt::decryptString($this->attributes['facility_type']);
     }
     /**
-     * Decrypts the provider nam3e for display
+     * Decrypts the provider name for display
      * 
      */
     public function getProviderNameAttribute()
@@ -299,6 +299,7 @@ class Referral extends Model
        return Crypt::decryptString($this->attributes['position']);
     }    
 
+    
 
     public static function getCountries(){
     	return DB::table('referrals')->pluck('country')->unique();
@@ -306,6 +307,11 @@ class Referral extends Model
 
     public static function getCities($country){
     	return DB::table('referrals')->where("country", $country)->pluck('city')->unique();
+    }
+
+    public function findSearch()
+    {
+        dd($this->getPhoneAttribute());
     }
 
 }

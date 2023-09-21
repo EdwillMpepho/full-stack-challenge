@@ -1,0 +1,1 @@
+<a href="/posts/create" class="btn btn-warning post-comment">Post Comments</a>

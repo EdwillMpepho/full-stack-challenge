@@ -26,7 +26,25 @@
                                 @endif
                             </div>
                         </div>
+                        <!-- user role -->
+                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                            <label for="rol" class="col-md-4 control-label">Role</label>
 
+                            <div class="col-md-6">
+                                <select class="form-control" name="role">
+                                    <option value="">please select a user role</option>
+                                    <option value="0">Admin</option>
+                                    <option value="1">Supervisor</option>
+                                    <option value="2">Executive</option>
+                                </select>
+                                @if ($errors->has('role'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                       <!-- end user role -->
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

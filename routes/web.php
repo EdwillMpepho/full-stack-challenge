@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +32,18 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('referrals/{country?}/{city?}', 'ReferralController@index');
     Route::post('referrals', 'ReferralController@store');
     Route::post('referrals/search','ReferralController@search')->name('referrals.search');
+    //Routes for users
+    Route::get('allusers', 'UserController@index')->name('users.index');
+    Route::delete('user/{id}','UserController@destroy')->name('users.delete');
+    //Routes for Posts
+    Route::get('posts/create', 'PostController@create');
 });
 
 /*
-//Routes for Posts
+
 Route::get('posts', 'PostsController@index');
 Route::post('posts', 'PostsController@store');
-Route::get('posts/create', 'PostsController@create');
+
 Route::get('posts/{post}', 'PostsController@show');
 
 

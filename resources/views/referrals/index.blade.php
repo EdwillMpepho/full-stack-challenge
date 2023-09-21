@@ -8,7 +8,11 @@
                 <div class="panel-heading"><h1>Referrals</h1></div>
 
                 <div class="panel-body">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin:5px auto;height:40px;">@include('partials.filterReferrals') @include('partials.createReferralButton')</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin:5px auto;height:40px;">
+                        @include('partials.filterReferrals') 
+                        @include('partials.postcomment') 
+                        @include('partials.createReferralButton')
+                    </div>
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
