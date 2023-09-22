@@ -3,7 +3,7 @@
     <div class="top-right links">
     <a href="/">Home</a>
     @auth
-      <a href="{{ route('register') }}">Register</a>
+      <a href="{{ route('users.create') }}">Register</a>
       <a href="#">
         {{ Auth::user()->name }} <span class="caret"></span>
        </a>

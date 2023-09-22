@@ -83,7 +83,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
-                    <a href="{{ route('register') }}">Register</a>
+                    <a href="{{ route('users.create') }}">Register</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth

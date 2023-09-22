@@ -7,7 +7,7 @@
                @if (Auth::user()->role == 0 )
                  <div class="panel-heading">Add New User</div>  
                 <div class="panel-body">
-                  <a href="/register" class="btn btn-info">Add User</a>
+                  <a href="/user/create" class="btn btn-info">Add User</a>
                   <a href="/allusers" class="btn btn-success">View Users</a>
                 </div> 
                @endif

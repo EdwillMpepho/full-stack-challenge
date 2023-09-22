@@ -34,6 +34,10 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('referrals/search','ReferralController@search')->name('referrals.search');
     //Routes for users
     Route::get('allusers', 'UserController@index')->name('users.index');
+    Route::get('user/create', 'UserController@create')->name('users.create');
+    Route::get('user/create/login', 'UserController@logincreate')->name('users.create.login');
+    Route::post('user/login', 'UserController@userlogin')->name('users.login');
+    Route::post('user/store', 'UserController@store')->name('users.store');
     Route::delete('user/{id}','UserController@destroy')->name('users.delete');
     //Routes for Posts
     Route::get('posts/create', 'PostController@create');

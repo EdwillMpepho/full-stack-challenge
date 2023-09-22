@@ -26,9 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.register');
     }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +37,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role'  =>  'required',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if(Auth::user()->role === 0 ){
+          $user = new User;
+          $user->name = $request->input('name');
+          $user->email = $request->input('email');
+          $user->role = $request->input('role');
+          $user->banned = false;
+          $user->password = bcrypt($request->input('password'));
+          $user->save();
+        }else{
+            return redirect()->back()->with('error_message','unauthorized');
+        }
+        return redirect()->route('users.index')->with('success_message','user was successfully added');
     }
 
     /**
