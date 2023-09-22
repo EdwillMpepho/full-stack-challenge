@@ -362,6 +362,6 @@ class ReferralController extends Controller
         if(count($record_array) <= 0){
             return redirect()->back()->with('error_message','Not Found');
         }
-        return $record_array;
+        return view('referrals.searchresults')->with('record_array',$record_array);
     }
 }
