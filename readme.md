@@ -30,3 +30,43 @@ You will find the public key for cecile@womenfirstdigital.org here https://drive
 We need enable search / filters on all columns so that the executives are able to quickly search down the data.
 You need to alter the code to make the view referrals interface better ( Use your creativity )
 
+# Here is the complete app
+1. Before Testing the application please run the  migration and php artisandb:seed to seed    the   database with some testing users. The users are authenticated based on roles 0 = admin 1 = supervisor 2 =executive.I did not use the sql lite database because I have mysql.
+$users = [
+        [
+            'name' => 'Branko Ilic',
+            'email' => 'branckoilic@gmail.com',
+            'password' =>  bcrypt('secret'),
+            'role' => 0,
+            'banned' =>false
+        ],
+        [
+            'name' => 'Mpepho Themba',
+            'email' => 'mpephothemba@gmail.com',
+            'password' =>  bcrypt('secret'),
+            'role' => 1,
+            'banned' =>false
+        ],
+        [
+            'name' => 'Noluthando Zulu',
+            'email' => 'noluthandozulu@gmail.com',
+            'password' =>  bcrypt('secret'),
+            'role' => 2,
+            'banned' =>false
+        ],
+        [
+            'name' => 'Jacob Harison',
+            'email' => 'jacobharrison@yahoo.com',
+            'password' =>  bcrypt('secret'),
+            'role' => 2,
+            'banned' =>false
+        ],
+        [
+            'name' => 'Brandy Thompson',
+            'email' => 'bradythompson@gmail.com',
+            'password' =>  bcrypt('secret'),
+            'role' => 2,
+            'banned' =>false
+        ],
+    ];
+
